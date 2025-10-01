@@ -8,7 +8,7 @@ namespace ConsoleProject2
     {
         Player player = new Player();
         Store store = new Store();
-
+        Battle battle = new Battle();
         public void GameStart()
         {
             
@@ -29,6 +29,7 @@ namespace ConsoleProject2
                         case 1:
                             Console.Clear();
                             Console.WriteLine("사냥하러가기");
+                            battle.BattleMonster();
                             Console.ReadLine();
                             break;
                         case 2:
@@ -66,12 +67,14 @@ namespace ConsoleProject2
                                             break;
                                         default:
                                             Console.WriteLine("잘못된 값 입력");
+                                            Console.ReadLine();
                                             break;
                                     }
                                 }
                                 else
                                 {
                                     Console.WriteLine("제대로 된 값을 입력해 주세요");
+                                    Console.ReadLine();
                                 }
                                 
                             }

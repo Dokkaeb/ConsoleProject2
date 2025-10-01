@@ -10,6 +10,8 @@ namespace ConsoleProject2
         {
             GameManager gameManager = new GameManager();
             gameManager.GameStart();
+            
+            
         }
     }
 }

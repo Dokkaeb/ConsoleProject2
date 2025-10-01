@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 namespace ConsoleProject2
 {
-    class Player
+    
+    class Player 
     {
         List<Weapon> inventory;
         public int PDamage {  get; set; }
@@ -34,6 +35,7 @@ namespace ConsoleProject2
         public void Attack()
         {
             Console.WriteLine($"{PDamage}의 공격을 가했다");
+            
         }
         public void AddWeapon(Weapon inputWeapon)
         {
@@ -72,12 +74,16 @@ namespace ConsoleProject2
                 while (true)
                 {
                     ShowInven();
-                    Console.WriteLine("몇번 장비를 장착하시겠습니까?");
+                    Console.WriteLine("몇번 장비를 장착하시겠습니까? 0번은 나가기");
 
                     bool isOk = int.TryParse(Console.ReadLine(), out int index);
                     if (isOk == false || index < 0 || index > inventory.Count)
                     {
                         Console.WriteLine("잘못된 값을 입력하셨습니다");
+                    }
+                    else if(isOk==true && index == 0)
+                    {
+                        break;
                     }
                     else
                     {
