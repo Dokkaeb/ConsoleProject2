@@ -1,0 +1,8 @@
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.exe.config
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.exe
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.pdb
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.csproj.AssemblyReference.cache
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.csproj.CoreCompileInputs.cache
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.pdb
+D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe.config
