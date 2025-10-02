@@ -22,12 +22,14 @@ namespace ConsoleProject2
             {
                 for (int i = 0; i < storeList.Count; i++)
                 {
+                    Console.SetCursorPosition(30, 16+i);
                     Console.WriteLine($"{i + 1}. {storeList[i].WName}  공격력: {storeList[i].WDamage}   가격: {storeList[i].WPrice}");
                 }
             }
             else
             {
                 Console.WriteLine();
+                Console.SetCursorPosition(30, 18);
                 Console.WriteLine("~~~~~~~~~다팔림~~~~~~~~");
                 Console.WriteLine();
             }
@@ -41,14 +43,18 @@ namespace ConsoleProject2
             while (true)
             {
                 Console.Clear();
+                Console.SetCursorPosition(30, 15);
                 Console.WriteLine("상점");
                 ShowStoreList();
+                Console.SetCursorPosition(30, 21);
                 Console.WriteLine("몇번 무기를 구입하시겠습니까? 0번은 나가기");
+                Console.SetCursorPosition(30, 22);
                 Console.WriteLine($"현재 플레이어 골드 : {Player.PGold}");
                 bool isOk = int.TryParse(Console.ReadLine(), out int index);
                 if (isOk == false || index < 0 || index > storeList.Count)
                 {
                     Console.Clear();
+                    Console.SetCursorPosition(30, 15);
                     Console.WriteLine("잘못된 값");
                     Console.ReadLine();
                 }
@@ -59,14 +65,35 @@ namespace ConsoleProject2
                 else
                 {
                    sell=storeList[index-1];
+                    Console.SetCursorPosition(30, 24);
                     Console.WriteLine($"{sell.WName}을 구입하셨습니다");
                     Player.PGold-=storeList[index-1].WPrice;
+                    Console.SetCursorPosition(30, 25);
                     Console.WriteLine($"남은골드 : {Player.PGold}");
                     storeList.RemoveAt(index-1);
+                    Console.ReadLine();
                     break;
                 }
             }
             return sell;
+        }
+
+        public void BuyWeapon(Player p)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Weapon buyWeapon;
+                buyWeapon = SellWeapon();
+                if (buyWeapon != null)
+                {
+                    p.Eq.AddWeapon(buyWeapon);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
     }
 }

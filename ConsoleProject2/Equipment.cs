@@ -1,0 +1,168 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleProject2
+{
+    class Equipment
+    {
+        List<Weapon> inventory;
+        public Equipment()
+        {
+            inventory = new List<Weapon>();
+            inventory.Add(new Weapon("단검", 0, 10));
+        }
+
+        public void AddWeapon(Weapon inputWeapon)
+        {
+            inventory.Add(inputWeapon);
+        }
+        public void ShowAndEquip(Player p)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.SetCursorPosition(30, 15);
+                Console.WriteLine("1. 인벤토리 보기   2.장비교체  0.나가기");
+                bool isOk=int.TryParse(Console.ReadLine(), out int num);
+                if (isOk && num == 1)
+                {
+                    Console.Clear();
+                    ShowInven();
+                    
+                }
+                else if (isOk && num == 2)
+                {
+                    Console.Clear();
+                    EquipWeapon(p);
+                    
+                }
+                else if(isOk && num == 0)
+                {
+                    break;
+                }
+            }
+        }
+
+
+        public void ShowInven()
+        {
+            while (true)
+            {
+                if (inventory.Count > 0)
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition(30, 15);
+                    Console.WriteLine("인벤토리 목록");
+                    Console.SetCursorPosition(30, 16);
+                    Console.WriteLine("--------------------------------------------------");
+                    Console.SetCursorPosition(30, 17);
+                    for (int i = 0; i < inventory.Count; i++)
+                    {
+                        Console.Write($" [{i + 1}.{inventory[i].WName}] ");
+                    }
+                    Console.SetCursorPosition(30, 19);
+                    Console.WriteLine();
+                    Console.SetCursorPosition(30, 20);
+                    Console.WriteLine("--------------------------------------------------");
+                    Console.SetCursorPosition(30, 21);
+                    Console.WriteLine($"가진 골드 : {Player.PGold} G");
+                    Console.WriteLine();
+
+                    Console.SetCursorPosition(20, 23);
+                    Console.WriteLine("상세설명을 보고싶은 장비의 번호를 입력해 주세요  0번 입력시 나가기");
+                    bool isOk = int.TryParse(Console.ReadLine(), out int num);
+                    if (isOk && num <= inventory.Count && num > 0)
+                    {
+                        Console.SetCursorPosition(20, 25);
+                        inventory[num - 1].Weaponinformation();
+                        Console.ReadLine();
+                    }
+                    else if(isOk && num == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(20, 26);
+                        Console.WriteLine("제대로된 번호를 입력해 주세요");
+                        Console.ReadLine();
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("인벤토리가 비어있습니다!");
+                    Console.ReadLine();
+                    break;
+                }
+            }
+            
+        }
+
+
+
+        public void EquipWeapon(Player p)
+        {
+            if (inventory.Count > 0)
+            {
+                Dictionary<int, Weapon> equip = new Dictionary<int, Weapon>();
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    equip.Add(i + 1, inventory[i]);
+                }
+                while (true)
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition(30, 15);
+                    Console.WriteLine("인벤토리 목록");
+                    Console.SetCursorPosition(30, 16);
+                    Console.WriteLine("--------------------------------------------------");
+                    Console.SetCursorPosition(30, 17);
+                    for (int i = 0; i < inventory.Count; i++)
+                    {
+                        Console.Write($" [{i + 1}.{inventory[i].WName}] ");
+                    }
+                    Console.SetCursorPosition(30, 18);
+                    Console.WriteLine();
+                    Console.SetCursorPosition(30, 19);
+                    Console.WriteLine("--------------------------------------------------");
+                    Console.SetCursorPosition(30, 20);
+                    Console.WriteLine($"가진 골드 : {Player.PGold} G");
+                    Console.WriteLine();
+                    Console.SetCursorPosition(30, 22);
+                    Console.WriteLine("몇번 장비를 장착하시겠습니까? 0번은 나가기");
+
+                    bool isOk = int.TryParse(Console.ReadLine(), out int index);
+                    if (isOk == false || index < 0 || index > inventory.Count)
+                    {
+                        Console.SetCursorPosition(30, 24);
+                        Console.WriteLine("잘못된 값을 입력하셨습니다");
+                        Console.ReadLine();
+                    }
+                    else if (isOk == true && index == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        p.PDamage = 10;
+                        Console.SetCursorPosition(30, 24);
+                        Console.WriteLine($"{equip[index].WName}을 장착했습니다");
+                        p.PDamage += equip[index].WDamage;
+                        Console.SetCursorPosition(30, 25);
+                        Console.WriteLine($"현재 공격력 : {p.PDamage}");
+                        Console.ReadLine();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("인벤토리가 비어있습니다!");
+            }
+        }
+    }
+}

@@ -18,9 +18,12 @@ namespace ConsoleProject2
 
             while (gameSart)
             {
+                Console.SetWindowSize(100, 50);
                 Console.Clear();
-                Console.WriteLine("메인메뉴");
-                Console.WriteLine("1.사냥터  2.상태창   3.장비창  4.상점  0.종료");
+                Console.SetCursorPosition(30, 15);
+                Console.WriteLine("-----------  고양이 사냥 RPG  ----------");
+                Console.SetCursorPosition(25, 20);
+                Console.WriteLine("1.사냥터  2.상태창   3.장비창  4.상점  5.여관  0.종료");
                 bool isOk = int.TryParse(Console.ReadLine(), out int MenuNum);
                 if (isOk)
                 {
@@ -28,85 +31,50 @@ namespace ConsoleProject2
                     {
                         case 1:
                             Console.Clear();
-                            Console.WriteLine("사냥하러가기");
-                            battle.BattleMonster();
-                            Console.ReadLine();
+
+                            battle.BattleMonster(player);                            
                             break;
+
                         case 2:
                             Console.Clear();
+                            Console.SetCursorPosition(30, 15);
                             Console.WriteLine("플레이어 상태창");
                             player.PlayerInformation();
                             Console.ReadLine();
                             break;
+
                         case 3:
                             Console.Clear();
-                            Console.WriteLine("장비창");
-                            bool eq=true;
-                            while (eq)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("1. 인벤토리 목록 전체 보기 2.장비 장착 0.메인메뉴로 돌아가기");
-                                bool invenOk = int.TryParse(Console.ReadLine(), out int invenNum);
-                                if (invenOk)
-                                {
-                                    switch (invenNum)
-                                    {
-                                        case 1:
-                                            Console.Clear();
-                                            player.ShowInven();
-                                            Console.ReadLine();
-                                            break;
-                                        case 2:
-                                            Console.Clear();
-                                            player.EquipWeapon();
-                                            Console.ReadLine();
-                                            break;
-                                        case 0:
-                                            eq = false;
+                            
+                            player.Eq.ShowAndEquip(player);
+                            break;
 
-                                            break;
-                                        default:
-                                            Console.WriteLine("잘못된 값 입력");
-                                            Console.ReadLine();
-                                            break;
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("제대로 된 값을 입력해 주세요");
-                                    Console.ReadLine();
-                                }
-                                
-                            }
-                            
-                            break;
                         case 4:
-                            
-                            while (true)
-                            {
-                                Console.Clear();
-                                
-                                
-                                Weapon buyWeapon;
-                                buyWeapon = store.SellWeapon();
-                                if (buyWeapon != null)
-                                {
-                                    player.AddWeapon(buyWeapon);
-                                }
-                                else
-                                {
-                                    break;
-                                }    
-                            }
+                            store.BuyWeapon(player);
                             break;
+
+                        case 5:
+                            Console.Clear();
+                            Console.SetCursorPosition(30, 15);
+                            Console.WriteLine("잠을자고 체력을 회복합니다");
+                            player.PHp = 100;
+                            Console.SetCursorPosition(30, 17);
+                            Console.WriteLine("+ + + ♡ + + + ");
+                            Console.SetCursorPosition(30, 19);
+                            Console.WriteLine($"플레이어 현재 체력 : {player.PHp}");
+                            Console.SetCursorPosition(30, 21);
+                            Console.WriteLine("+ + + ♡ + + + ");
+                            Console.ReadLine();
+                            break;
+
                         case 0:
                             Console.WriteLine("종료");
-                            gameSart = false;
-                            
+                            gameSart = false;                           
                             break;
+
                         default:
                             Console.Clear();
-                            Console.WriteLine("잘못입력");
+                            Console.WriteLine("잘못된 값 입력됨");
                             Console.ReadLine();
                             break;
                     }
