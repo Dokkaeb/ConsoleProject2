@@ -9,6 +9,7 @@ namespace ConsoleProject2
     class Equipment
     {
         List<Weapon> inventory;
+        Weapon current = null;
         public Equipment()
         {
             inventory = new List<Weapon>();
@@ -55,12 +56,19 @@ namespace ConsoleProject2
                 {
                     Console.Clear();
                     Console.SetCursorPosition(30, 15);
-                    Console.WriteLine("인벤토리 목록");
+                    Console.WriteLine("인벤토리 목록 (현재 장착중인 장비는 초록색으로 표시)");
                     Console.SetCursorPosition(30, 16);
                     Console.WriteLine("--------------------------------------------------");
                     Console.SetCursorPosition(30, 17);
                     for (int i = 0; i < inventory.Count; i++)
                     {
+                        if (current == inventory[i])
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($" [{i + 1}.{inventory[i].WName}] ");
+                            Console.ResetColor();
+                            continue;
+                        }
                         Console.Write($" [{i + 1}.{inventory[i].WName}] ");
                     }
                     Console.SetCursorPosition(30, 19);
@@ -109,6 +117,7 @@ namespace ConsoleProject2
             if (inventory.Count > 0)
             {
                 Dictionary<int, Weapon> equip = new Dictionary<int, Weapon>();
+                
                 for (int i = 0; i < inventory.Count; i++)
                 {
                     equip.Add(i + 1, inventory[i]);
@@ -117,12 +126,21 @@ namespace ConsoleProject2
                 {
                     Console.Clear();
                     Console.SetCursorPosition(30, 15);
-                    Console.WriteLine("인벤토리 목록");
+                    Console.WriteLine("인벤토리 목록 (현재 장착중인 장비는 초록색으로 표시됨)");
                     Console.SetCursorPosition(30, 16);
                     Console.WriteLine("--------------------------------------------------");
                     Console.SetCursorPosition(30, 17);
                     for (int i = 0; i < inventory.Count; i++)
                     {
+                        if (current == inventory[i])
+                        {
+                            Console.ForegroundColor= ConsoleColor.Green;
+                            Console.Write($" [{i + 1}.{inventory[i].WName}] ");
+                            Console.ResetColor();
+                            continue;
+                        }
+
+                        
                         Console.Write($" [{i + 1}.{inventory[i].WName}] ");
                     }
                     Console.SetCursorPosition(30, 18);
@@ -148,14 +166,33 @@ namespace ConsoleProject2
                     }
                     else
                     {
+                        if(current == equip[index])
+                        {
+                            Console.SetCursorPosition(30, 24);
+                            Console.WriteLine("이미 장착한 장비입니다! 장착 해체하시겠습니까? 해체를 원하면 1번 입력");
+                            bool isUninstall = int.TryParse(Console.ReadLine(), out int yesNo);
+                            if(isUninstall==true && yesNo == 1)
+                            {
+                                current = null;
+                                p.PDamage = 10;
+                                Console.SetCursorPosition(30, 25);
+                                Console.WriteLine($"장착을 해체했습니다! 현재 공격력 : {p.PDamage}");
+                                Console.ReadLine();
+                                continue;
+                            }
+                            continue;
+                            
+                        }
+
                         p.PDamage = 10;
                         Console.SetCursorPosition(30, 24);
                         Console.WriteLine($"{equip[index].WName}을 장착했습니다");
+                        current=equip[index];
                         p.PDamage += equip[index].WDamage;
                         Console.SetCursorPosition(30, 25);
                         Console.WriteLine($"현재 공격력 : {p.PDamage}");
                         Console.ReadLine();
-                        break;
+                        
                     }
                 }
             }
@@ -164,5 +201,6 @@ namespace ConsoleProject2
                 Console.WriteLine("인벤토리가 비어있습니다!");
             }
         }
+
     }
 }

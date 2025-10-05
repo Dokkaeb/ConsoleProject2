@@ -6,3 +6,11 @@ D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.csproj.
 D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe
 D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.pdb
 D:\ASDF\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe.config
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.exe.config
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.exe
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\bin\Debug\ConsoleProject2.pdb
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.csproj.AssemblyReference.cache
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe.config
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.csproj.CoreCompileInputs.cache
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.exe
+C:\Users\samsung\Documents\GitHub\ConsoleProject2\ConsoleProject2\obj\Debug\ConsoleProject2.pdb
