@@ -7,7 +7,7 @@ namespace ConsoleProject2
     
     class Player 
     {
-        Equipment equipment;
+        Equipment equipment; //인벤토리와 장비장착을 위한 인스턴스
         public Equipment Eq
         {
             get {  return equipment; }
@@ -15,7 +15,7 @@ namespace ConsoleProject2
         }
         public int PDamage {  get; set; }
         public int PHp {  get; set; }
-        public static int PGold {  get; set; }
+        public static int PGold {  get; set; }  //플레이어 골드는 스태틱으로 선언해서 어디서든 변경가능
         
 
         public Player()
@@ -26,6 +26,8 @@ namespace ConsoleProject2
             PDamage = 10;
             PGold = 1000;
         }
+
+        // 플레이어 상태창을 출력하는 메서드
         public void PlayerInformation()
         {
             Console.SetCursorPosition(30, 16);
@@ -41,6 +43,8 @@ namespace ConsoleProject2
             Console.SetCursorPosition(30, 22);
             Console.WriteLine("-------------------------");
         }
+
+        //플레이어의 공격을 출력하는 메서드
         public void Attack()
         {
             Console.SetCursorPosition(30, 10);

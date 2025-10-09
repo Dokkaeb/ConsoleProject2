@@ -7,6 +7,8 @@ namespace ConsoleProject2
     {
         
         Monster monster;
+
+        //배틀 클래스내 메서드들을 관리하는 메서드
         public void BattleMonster(Player player)
         {
             bool battleOn = true;
@@ -35,13 +37,15 @@ namespace ConsoleProject2
                 }
             }
         }
+
+        //몬스터와 배틀or 도망을 구현하는 메서드
         public void FightandRun(Monster m, Player p)
         {
             while (true)
             {
                 Console.Clear();
                 Console.SetWindowSize(100, 50);                
-                Console.WriteLine(m.AscArt[0]);
+                Console.WriteLine(m.AscArt[0]); //선택한 몬스터의 아스키 아트를 보여주기
                 Console.SetCursorPosition(30, 5);
                 Console.WriteLine($"{m.MName} 체력: {m.MHp} 공격력: {m.MDamage} ");
                 Console.SetCursorPosition(30, 8);
@@ -50,17 +54,18 @@ namespace ConsoleProject2
                 bool fight = int.TryParse(Console.ReadLine(), out int fightNum);
                 if (fight == true && fightNum == 1)
                 {
-                    if (p.PHp <= 0)
+                    if (p.PHp <= 0)  //플레이어의 체력이 0이면 사망처리
                     {
                         Console.SetCursorPosition(30, 10);
                         Console.WriteLine("사망했습니다 여관에서 체력을 채워 오세요");
                         Console.ReadLine();
                         break;
                     }
+                    //플레이어의 공격
                     p.Attack();
                     m.MHp -= p.PDamage;
 
-                    if (m.MHp <= 0)
+                    if (m.MHp <= 0)  //몬스터의 체력이 0이되면 처리되는 부분
                     {
                         Console.Clear();
                         Console.WriteLine(m.AscArt[1]);
@@ -77,12 +82,14 @@ namespace ConsoleProject2
                         Console.ReadLine();
                         break;
                     }
+                    //몬스터의 공격
                     m.Attack();
                     p.PHp -= m.MDamage;
                     Console.SetCursorPosition(30, 13);
                     Console.WriteLine($"플레이어  체력: {p.PHp}");
                     Console.ReadLine();
                 }
+                //도망가는 기능
                 else if (fight == true && fightNum == 2)
                 {
                     Console.SetCursorPosition(30, 10);
@@ -93,6 +100,7 @@ namespace ConsoleProject2
             }
         }
     }
+    //몬스터를 상속받는 칼고양이와 창고양이 구현
     class Monster
     {
         public string MName { get; set; }

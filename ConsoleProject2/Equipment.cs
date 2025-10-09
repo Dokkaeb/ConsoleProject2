@@ -8,18 +8,21 @@ namespace ConsoleProject2
 {
     class Equipment
     {
-        List<Weapon> inventory;
-        Weapon current = null;
+        List<Weapon> inventory; //장비들을 저장하는 인벤토리 리스트
+        Weapon current = null;  //현재 장착한 장비를 저장하는 current
         public Equipment()
         {
             inventory = new List<Weapon>();
-            inventory.Add(new Weapon("단검", 0, 10));
+            inventory.Add(new Weapon("단검", 0, 10)); //기본장비로 단검이 인벤토리에 들어옴
         }
 
+        // 인벤토리에 장비 추가하는 메서드
         public void AddWeapon(Weapon inputWeapon)
         {
             inventory.Add(inputWeapon);
         }
+
+        //인벤목록 보기와 장비창착 메서드를 관리하기 위한 메서드
         public void ShowAndEquip(Player p)
         {
             while (true)
@@ -47,7 +50,7 @@ namespace ConsoleProject2
             }
         }
 
-
+        //인벤토리 목록과 선택한 장비의 설명을 보여주는 메서드
         public void ShowInven()
         {
             while (true)
@@ -62,7 +65,7 @@ namespace ConsoleProject2
                     Console.SetCursorPosition(30, 17);
                     for (int i = 0; i < inventory.Count; i++)
                     {
-                        if (current == inventory[i])
+                        if (current == inventory[i])  //현재 장비를 장착하고 있으면 초록색으로 표시해주는 기능
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write($" [{i + 1}.{inventory[i].WName}] ");
@@ -82,6 +85,8 @@ namespace ConsoleProject2
                     Console.SetCursorPosition(20, 23);
                     Console.WriteLine("상세설명을 보고싶은 장비의 번호를 입력해 주세요  0번 입력시 나가기");
                     bool isOk = int.TryParse(Console.ReadLine(), out int num);
+
+                    //선택한 장비의 정보를 보여주는 기능
                     if (isOk && num <= inventory.Count && num > 0)
                     {
                         Console.SetCursorPosition(20, 25);
@@ -111,12 +116,12 @@ namespace ConsoleProject2
         }
 
 
-
+        //장비 장착과 해체를 해주는 메서드
         public void EquipWeapon(Player p)
         {
             if (inventory.Count > 0)
             {
-                Dictionary<int, Weapon> equip = new Dictionary<int, Weapon>();
+                Dictionary<int, Weapon> equip = new Dictionary<int, Weapon>();   //관리 편하게 딕셔너리에 넣기
                 
                 for (int i = 0; i < inventory.Count; i++)
                 {
@@ -132,7 +137,7 @@ namespace ConsoleProject2
                     Console.SetCursorPosition(30, 17);
                     for (int i = 0; i < inventory.Count; i++)
                     {
-                        if (current == inventory[i])
+                        if (current == inventory[i]) //장비 장착중이면 초록색으로 표시해주는 기능
                         {
                             Console.ForegroundColor= ConsoleColor.Green;
                             Console.Write($" [{i + 1}.{inventory[i].WName}] ");
@@ -166,6 +171,7 @@ namespace ConsoleProject2
                     }
                     else
                     {
+                        //이미 장착한 장비를 선택시 해체할 수 있는 기능
                         if(current == equip[index])
                         {
                             Console.SetCursorPosition(30, 24);
@@ -184,6 +190,7 @@ namespace ConsoleProject2
                             
                         }
 
+                        //선택한 장비 장착하는 기능
                         p.PDamage = 10;
                         Console.SetCursorPosition(30, 24);
                         Console.WriteLine($"{equip[index].WName}을 장착했습니다");

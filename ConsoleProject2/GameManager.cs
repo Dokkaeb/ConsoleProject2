@@ -9,12 +9,11 @@ namespace ConsoleProject2
         Player player = new Player();
         Store store = new Store();
         Battle battle = new Battle();
+
+        //각 클래스의 구현 기능들을 관리하는 메서드
         public void GameStart()
         {
-            
-
             bool gameSart = true;
-
 
             while (gameSart)
             {
@@ -53,7 +52,7 @@ namespace ConsoleProject2
                             store.BuyWeapon(player);
                             break;
 
-                        case 5:
+                        case 5:   // 여관 기능 간단하게 구현
                             Console.Clear();
                             Console.SetCursorPosition(30, 15);
                             Console.WriteLine("잠을자고 체력을 회복합니다");
